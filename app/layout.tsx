@@ -16,7 +16,7 @@ export const viewport: Viewport = { width: 'device-width', initialScale: 1, them
 
 export const metadata: Metadata = {
   icons: { icon: '/assets/yellowbird-midflap.png' },
-  title: 'Flappy Pocket — One more try',
+  title: 'Flappy Pocket',
   description: 'A pocket-sized Flappy Bird recreation. Tap to flap, dodge the pipes, and beat your best.',
 };
 

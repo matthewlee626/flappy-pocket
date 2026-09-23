@@ -123,20 +123,18 @@ export default function Home() {
     <main className="arcade">
       <div className="game-shell">
         <header className="topbar">
-          <a className="brand" href="/" aria-label="Flappy Pocket home"><img src="/assets/yellowbird-midflap.png" alt="" /> <span>FLAPPY<span className="brand-sub">POCKET ARCADE</span></span></a>
+          <a className="brand" href="/" aria-label="Flappy Pocket home"><img src="/assets/yellowbird-midflap.png" alt="" /> <span>FLAPPY</span></a>
           <div className="best"><Trophy size={15} /><span>BEST</span><strong>{best.toString().padStart(2, '0')}</strong></div>
         </header>
         <section className="game" aria-label="Flappy Bird game">
           <canvas ref={canvas} width={W} height={H} aria-label="Tap or press Space to fly through the pipes" />
           <div className="touch-surface" role="button" tabIndex={0} aria-label={mode === 'over' ? 'Play again' : 'Flap'} onPointerDown={e => { e.preventDefault(); actions.current.flap(); }} onKeyDown={e => { if (e.code === 'Enter') { e.preventDefault(); actions.current.flap(); } }} />
           {mode === 'playing' && <div className="live-score" aria-live="polite">{score}</div>}
-          {mode === 'ready' && <div className="intro overlay"><span className="eyebrow">ONE MORE TRY?</span><h1>flappy<span>bird</span></h1><div className="ready-label">GET READY!</div><p>Small bird. Big ambition.</p><button onClick={flap} disabled={!loaded}>{assetError ? 'Could not load game' : loaded ? 'LET’S FLY' : 'LOADING…'}<Play size={17} fill="currentColor" /></button><span className="tap-hint">TAP ANYWHERE TO FLAP</span></div>}
-          {mode === 'paused' && <div className="overlay result"><span className="eyebrow">TAKE A BREATHER</span><h2>Paused</h2><button onClick={() => actions.current.pause()}><Play size={17} /> RESUME</button></div>}
-          {mode === 'over' && <div className="overlay result"><span className="eyebrow">SO CLOSE. GO AGAIN.</span><h2>Game over</h2><div className="scorecard"><div><span>SCORE</span><strong>{score}</strong></div><div><span>BEST</span><strong>{best}</strong></div></div><button onClick={flap}><RotateCcw size={17} /> TRY AGAIN</button></div>}
-          <div className="ground-label">KEEP YOUR HEAD IN THE CLOUDS</div>
+          {mode === 'ready' && <div className="intro overlay"><h1>flappy<span>bird</span></h1><button onClick={flap} disabled={!loaded}>{assetError ? 'Could not load game' : loaded ? 'PLAY' : 'LOADING…'}<Play size={17} fill="currentColor" /></button><span className="tap-hint">TAP ANYWHERE TO FLAP</span></div>}
+          {mode === 'paused' && <div className="overlay result"><h2>Paused</h2><button onClick={() => actions.current.pause()}><Play size={17} /> RESUME</button></div>}
+          {mode === 'over' && <div className="overlay result"><h2>Game over</h2><div className="scorecard"><div><span>SCORE</span><strong>{score}</strong></div><div><span>BEST</span><strong>{best}</strong></div></div><button onClick={flap}><RotateCcw size={17} /> TRY AGAIN</button></div>}
         </section>
         <footer className="controls"><span><kbd>SPACE</kbd> or tap to flap</span><div><button aria-label={muted ? 'Enable sound' : 'Mute sound'} onClick={() => { muteRef.current = !muted; setMuted(!muted); }}>{muted ? <VolumeX size={19} /> : <Volume2 size={19} />}</button><button aria-label={mode === 'paused' ? 'Resume game' : 'Pause game'} disabled={mode === 'ready' || mode === 'over'} onClick={() => actions.current.pause()}>{mode === 'paused' ? <Play size={18} /> : <Pause size={18} />}</button></div></footer>
-        <p className="credit">A little nostalgia. A lot of “one more.” <a href="https://github.com/samuelcust/flappy-bird-assets" target="_blank" rel="noreferrer">Asset credits ↗</a></p>
       </div>
     </main>
   );
